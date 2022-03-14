@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "client",
   "version": "0.1.0",
   "private": true,
@@ -37,15 +36,4 @@
       "last 1 safari version"
     ]
   }
-=======
-  "name": "stock-api",
-  "version": "1.0.0",
-  "description": "Stock option data and pricing data",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
->>>>>>> aa3cd1a58ae9449c7239b9265c0b37a4b6ee01b3
 }

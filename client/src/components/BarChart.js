@@ -29,7 +29,7 @@ const BarChart = (props) => {
                             {
                                 label: 'Call',
                                 data: callOpenInterest,
-                                backgroundColor: ['rgba(39, 255, 0, 1.0)']
+                                backgroundColor: ['rgba(23, 122, 23, 0.8)']
                             },
                             {
                                 label: 'Put',
@@ -59,7 +59,7 @@ const BarChart = (props) => {
                             {
                                 label: 'Call',
                                 data: callVolume,
-                                backgroundColor: ['rgba(39, 255, 0, 1.0)']
+                                backgroundColor: ['rgba(23, 122, 23, 0.8)']
                             },
                             {
                                 label: 'Put',

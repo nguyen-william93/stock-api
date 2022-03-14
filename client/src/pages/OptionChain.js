@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Form, Button, Dropdown, DropdownButton,  } from 'react-bootstrap';
-import { test } from '../utils/API';
+import { API } from '../utils/API';
 import BarChart from '../components/BarChart'
 
 const apiKey = 'GIGELQVPAWW4KA2J9TMC1VP3IAEH4Q7H'
@@ -13,13 +13,13 @@ const OptionChain = () => {
     useEffect(() => {
         const SearchFormHandle = async () => {
             const symbol = searchInput.toUpperCase();
-            const options = {
+            const url = {
                 method: 'GET',
                 url: `https://api.tdameritrade.com/v1/marketdata/chains?apikey=GIGELQVPAWW4KA2J9TMC1VP3IAEH4Q7H&symbol=${symbol}`,
             }
             try {
                 //Getting all the expiration date for option contracts
-                const result = await test(options);
+                const result = await API(url);
                 const expirationDates = Object.keys(result.callExpDateMap)
                 setDates(expirationDates);
 
@@ -40,13 +40,13 @@ const OptionChain = () => {
 
         const date = searchDate.split(':')[0]
         const symbol = searchInput.toUpperCase();
-        const options = {
+        const url = {
             method: 'GET',
             url: `https://api.tdameritrade.com/v1/marketdata/chains?apikey=GIGELQVPAWW4KA2J9TMC1VP3IAEH4Q7H&symbol=${symbol}&fromDate=${date}&toDate=${date}`,
         }
         try {
             //destructing response from request and initialized the necessary information to travers the object
-            const result = await test(options);
+            const result = await API(url);
             const { callExpDateMap, putExpDateMap } = await result;
             const strikes = Object.keys(callExpDateMap[searchDate]);
 
@@ -66,9 +66,9 @@ const OptionChain = () => {
 
     return (
         <>
-            <Container className='text-light bg-dark w-75'>
+            <Container fluid className='d-flex text-light bg-dark flex-wrap'>
                 <h1 className='d-flex justify-content-center'>Search Option Chain</h1>
-                <Form className='d-flex justify-content-between'>
+                <Form className='d-flex justify-content-between flex-wrap'>
                     <Form.Group className="w-auto" controlId="formBasicEmail">
                         <Form.Control
                             name='searchInput'
@@ -84,11 +84,10 @@ const OptionChain = () => {
                                 )
                             })}
                     </DropdownButton> 
-                    <div className='vr' />
                     <Button variant='primary' type='submit' onClick={(e) => SubmitFormHandle(e)} className='mb-3'>Submit</Button>
                 </Form>
             </Container>
-            <Container className='d-flex mx.auto justify-content-center' >
+            <Container fluid className='d-flex justify-content-center flex-wrap' >
                 {chartData.length
                     ? <BarChart data={chartData} />
                     : 'Enter a stock symbol'}
