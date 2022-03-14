@@ -66,7 +66,7 @@ const OptionChain = () => {
 
     return (
         <>
-            <Container fluid className='d-flex text-light bg-dark flex-wrap'>
+            <Container fluid className='d-flex text-light bg-dark flex-wrap flex-column w-75'>
                 <h1 className='d-flex justify-content-center'>Search Option Chain</h1>
                 <Form className='d-flex justify-content-between flex-wrap'>
                     <Form.Group className="w-auto" controlId="formBasicEmail">
