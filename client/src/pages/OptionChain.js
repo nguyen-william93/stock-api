@@ -20,7 +20,7 @@ const OptionChain = () => {
             try {
                 //Getting all the expiration date for option contracts
                 const result = await test(options);
-                const expirationDates = await Object.keys(result.callExpDateMap)
+                const expirationDates = Object.keys(result.callExpDateMap)
                 setDates(expirationDates);
 
             } catch (err) {
@@ -50,15 +50,13 @@ const OptionChain = () => {
             const { callExpDateMap, putExpDateMap } = await result;
             const strikes = Object.keys(callExpDateMap[searchDate]);
 
-            console.log(strikes)
-
             const optionData = strikes.map((strike) => ({
                 expiration: searchDate,
                 strike: strike,
                 callOpenInterest: callExpDateMap[searchDate][strike][0].openInterest,
-                callVolume: callExpDateMap[searchDate][strike][0].volume,
+                callVolume: callExpDateMap[searchDate][strike][0].totalVolume,
                 putOpenInterest: putExpDateMap[searchDate][strike][0].openInterest,
-                putVolume: putExpDateMap[searchDate][strike][0].volume,
+                putVolume: putExpDateMap[searchDate][strike][0].totalVolume,
             }))
             setChartData(optionData);
         } catch (err) {
@@ -68,10 +66,10 @@ const OptionChain = () => {
 
     return (
         <>
-            <Container fluid className='text-light bg-dark w-75'>
+            <Container className='text-light bg-dark w-75'>
                 <h1 className='d-flex justify-content-center'>Search Option Chain</h1>
-                <Form className='d-flex flex-row justify-content-between'>
-                    <Form.Group className="mb-3 w-75 d-flex" controlId="formBasicEmail">
+                <Form className='d-flex justify-content-between'>
+                    <Form.Group className="w-auto" controlId="formBasicEmail">
                         <Form.Control
                             name='searchInput'
                             value={searchInput}
@@ -79,7 +77,7 @@ const OptionChain = () => {
                             type="text"
                             placeholder="Enter stock symbol" />
                     </Form.Group>
-                    <DropdownButton id="dropdown-item-button" title="Pick Expiration Date" className="mb-3 ml-4 d-flex justify-content-between">
+                    <DropdownButton id="dropdown-item-button" title="Pick Expiration Date" className='mb-3'>
                             {searchDates.map((date) => {
                                 return (
                                     <Dropdown.Item key={date} onClick={(e) => dateFormHandle(e)}>{date} days till expiration</Dropdown.Item>
@@ -87,10 +85,10 @@ const OptionChain = () => {
                             })}
                     </DropdownButton> 
                     <div className='vr' />
-                    <Button variant='primary' type='submit' onClick={(e) => SubmitFormHandle(e)} className="mb-3 d-flex justify-content-between">Submit</Button>
+                    <Button variant='primary' type='submit' onClick={(e) => SubmitFormHandle(e)} className='mb-3'>Submit</Button>
                 </Form>
             </Container>
-            <Container fluid className='d-flex w-75 mx.auto justify-content-center' >
+            <Container className='d-flex mx.auto justify-content-center' >
                 {chartData.length
                     ? <BarChart data={chartData} />
                     : 'Enter a stock symbol'}
