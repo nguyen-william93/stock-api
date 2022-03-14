@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const test = (data) => {
-    return axios.request(data)
+export const test = (url) => {
+    return axios.request(url)
         .then((response) => response.data)
         .catch(err => err)
 }
