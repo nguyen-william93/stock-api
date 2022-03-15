@@ -13,7 +13,7 @@ const BarChart = (props) => {
     props.data.forEach(prop => {
         callOpenInterest.push(prop.callOpenInterest);
         putOpenInterest.push(prop.putOpenInterest);
-        strike.push(`Strike: ${prop.strike}`)
+        strike.push(prop.strike)
         callVolume.push(prop.callVolume)
         putVolume.push(prop.putVolume)
     })
