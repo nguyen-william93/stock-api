@@ -5,7 +5,7 @@
   "scripts": {
     "install": "cd client && npm i",
     "build": "cd client && npm run build",
-    "start": "node server.js"
+    "start": "node server/server.js"
   },
   "eslintConfig": {
     "extends": [
