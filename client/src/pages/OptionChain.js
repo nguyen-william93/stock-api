@@ -87,7 +87,7 @@ const OptionChain = () => {
                     <Button variant='primary' type='submit' onClick={(e) => SubmitFormHandle(e)} className='mb-3'>Submit</Button>
                 </Form>
             </Container>
-            <Container fluid className='d-flex justify-content-center flex-wrap' >
+            <Container fluid className='d-flex justify-content-center flex-wrap flex-row' >
                 {chartData.length
                     ? <BarChart data={chartData} />
                     : 'Enter a stock symbol'}

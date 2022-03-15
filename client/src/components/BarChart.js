@@ -39,7 +39,7 @@ const BarChart = (props) => {
                         ]
                     }}
                     width={'auto'}
-                    height={'300px'}
+                    height={'100px'}
                     options={{
                         maintainAspectRatio: true,
                         responsive: true,
@@ -69,7 +69,7 @@ const BarChart = (props) => {
                         ]
                     }}
                     width={'auto'}
-                    height={'300px'}
+                    height={'100px'}
                     options={{
                         maintainAspectRatio: true,
                         responsive: true,
