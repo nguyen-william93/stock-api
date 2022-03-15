@@ -5,7 +5,7 @@
   "scripts": {
     "install": "cd client && npm i",
     "build": "cd client && npm run build",
-    "start": "node client/src/index.js"
+    "start": "node server.js"
   },
   "eslintConfig": {
     "extends": [
@@ -24,5 +24,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "serve": "^13.0.2"
   }
 }
