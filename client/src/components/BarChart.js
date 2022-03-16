@@ -4,7 +4,6 @@ import Chart from 'chart.js/auto'
 import { Container, Stack } from 'react-bootstrap';
 
 const BarChart = (props) => {
-    console.log(props)
     const callOpenInterest = [];
     const strike = [];
     const putOpenInterest = [];
