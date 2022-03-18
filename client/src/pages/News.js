@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap';
 import { newsAPI } from '../utils/API';
-import NewsCard from '../components/News';
+import NewsCard from '../components/NewsCard';
 
 const News = () => {
     const [searchInput, setSearchInput] = useState('');
