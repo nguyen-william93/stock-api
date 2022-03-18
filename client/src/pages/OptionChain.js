@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Form, Button, Dropdown, DropdownButton,  } from 'react-bootstrap';
-import { API } from '../utils/API';
+import { optionAPI } from '../utils/API';
 import BarChart from '../components/BarChart'
 
 const apiKey = 'GIGELQVPAWW4KA2J9TMC1VP3IAEH4Q7H'
@@ -13,7 +13,7 @@ const OptionChain = () => {
     const [symbol, setSymbol] = useState('')
 
     useEffect(() => {
-        const SearchFormHandle = async () => {
+        const SearchFormHandle = async() => {
             const symbol = searchInput.toUpperCase();
             const url = {
                 method: 'GET',
@@ -21,9 +21,10 @@ const OptionChain = () => {
             }
             try {
                 //Getting all the expiration date for option contracts
-                const result = await API(url);
+                const result = await optionAPI(url);
                 const expirationDates = Object.keys(result.callExpDateMap)
-                setDates(expirationDates);
+                setDates(expirationDates)
+
             } catch (err) {
                 console.log(err);
             };
@@ -48,7 +49,7 @@ const OptionChain = () => {
 
         try {
             //destructing response from request and initialized the necessary information to travers the object
-            const result = await API(url);
+            const result = await optionAPI(url);
             const { callExpDateMap, putExpDateMap } = await result;
             const strikes = Object.keys(callExpDateMap[searchDate]);
             console.log(result)
@@ -63,7 +64,7 @@ const OptionChain = () => {
 
             setChartData(optionData);
             setCurrentPrice(result.underlyingPrice);
-            setSymbol(symbol);
+            setSymbol(symbol)
         } catch (err) {
             console.log(err)
         }
