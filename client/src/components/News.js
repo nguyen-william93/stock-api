@@ -9,12 +9,13 @@ const News = (props) => {
         <>
             {news.map((element) => {
                 return (
-                    <Card key={element.id} className="d-flex justify-content-center align-content-center mt-2">
-                        <Card.Title> {element.title} </Card.Title>
+                    <Card key={element.id} className="d-flex justify-content-center align-content-center mt-2 pl-2">
+                        <Card.Link href = {element.article_url}> {element.title} </Card.Link>
                         <Card.Body>
-                            <Card.Text>Published On: {element.publishedOn} </Card.Text>
-                            <Card.Text>Author: {element.provider} </Card.Text>
-                            <Card.Text>Summary: {element.summary}</Card.Text>
+                            <Card.Text>Publisher: {element.publisher.name}</Card.Text>
+                            <Card.Text>Published On: {element.published_utc} </Card.Text>
+                            <Card.Text>Author: {element.author} </Card.Text>
+                            <Card.Text>Summary: {element.description}</Card.Text>
                         </Card.Body>
                     </Card>
                 )
