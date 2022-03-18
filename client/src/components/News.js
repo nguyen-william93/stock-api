@@ -2,7 +2,7 @@ import { Title } from 'chart.js';
 import React from 'react';
 import { Container, Card } from 'react-bootstrap';
 
-const News = (props) => {
+const NewsCard = (props) => {
     const news = props.news;
 
     return (
@@ -24,4 +24,4 @@ const News = (props) => {
     )
 }
 
-export default News
+export default NewsCard;

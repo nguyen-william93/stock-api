@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Form, Button, Card } from 'react-bootstrap';
 import { newsAPI } from '../utils/API';
-import News from '../components/News';
+import NewsCard from '../components/News';
 
-const Research = () => {
+const News = () => {
     const [searchInput, setSearchInput] = useState('');
     const [news, setNews] = useState([]);
 
@@ -37,7 +37,7 @@ const Research = () => {
             </Container>
             <Container fluid className='d-flex flex-column justify-content-center w-75 p-0'>
                 {news.length
-                    ? <News news={news} />
+                    ? <NewsCard news={news} />
                     : "Search For A Stock"
                 }
             </Container>
@@ -45,4 +45,4 @@ const Research = () => {
     )
 };
 
-export default Research;
+export default News;

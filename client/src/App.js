@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import OptionChain from './pages/OptionChain';
-import Research from './pages/Research'
+import News from './pages/News'
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <>
         <Routes>
           <Route path='/' element={<OptionChain />}/>
-          <Route path='/research' element={ <Research />}/>
+          <Route path='/news' element={ <News />}/>
         </Routes>
       </>
     </Router>
