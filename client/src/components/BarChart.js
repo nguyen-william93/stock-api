@@ -17,10 +17,14 @@ const BarChart = (props) => {
         putVolume.push(prop.putVolume)
     })
 
+    const symbol = props.symbol.toUpperCase();
+    const price = Math.round(props.currentPrice * 100) / 100
+
     return (
         <>
-            <Container>
-                <h1>Open Interest Chart</h1>
+            <Container fluid>
+                <h2 className ='d-flex justify-content-center'>Current Price of {symbol}: {price}</h2>
+                <h4 className = 'd-flex justify-content-center'>Open Interest Chart</h4>
                 <Bar
                     data={{
                         labels: strike,
@@ -49,8 +53,8 @@ const BarChart = (props) => {
                     }}
                 />
             </Container>
-            <Container>
-                <h1>Volume Chart</h1>
+            <Container fluid>
+                <h4 className='d-flex justify-content-center'>Volume Chart</h4>
                 <Bar
                     data={{
                         labels: strike,

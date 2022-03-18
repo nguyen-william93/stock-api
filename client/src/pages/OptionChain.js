@@ -9,6 +9,8 @@ const OptionChain = () => {
     const [searchDate, setDate] = useState('')
     const [searchDates, setDates] = useState([]);
     const [chartData, setChartData] = useState([])
+    const [currentPrice, setCurrentPrice] = useState('');
+    const [symbol, setSymbol] = useState('')
 
     useEffect(() => {
         const SearchFormHandle = async () => {
@@ -22,7 +24,6 @@ const OptionChain = () => {
                 const result = await API(url);
                 const expirationDates = Object.keys(result.callExpDateMap)
                 setDates(expirationDates);
-
             } catch (err) {
                 console.log(err);
             };
@@ -43,13 +44,14 @@ const OptionChain = () => {
         const url = {
             method: 'GET',
             url: `https://api.tdameritrade.com/v1/marketdata/chains?apikey=GIGELQVPAWW4KA2J9TMC1VP3IAEH4Q7H&symbol=${symbol}&fromDate=${date}&toDate=${date}`,
-        }
+        };
+
         try {
             //destructing response from request and initialized the necessary information to travers the object
             const result = await API(url);
             const { callExpDateMap, putExpDateMap } = await result;
             const strikes = Object.keys(callExpDateMap[searchDate]);
-
+            console.log(result)
             const optionData = strikes.map((strike) => ({
                 expiration: searchDate,
                 strike: strike,
@@ -57,8 +59,11 @@ const OptionChain = () => {
                 callVolume: callExpDateMap[searchDate][strike][0].totalVolume,
                 putOpenInterest: putExpDateMap[searchDate][strike][0].openInterest,
                 putVolume: putExpDateMap[searchDate][strike][0].totalVolume,
-            }))
+            }));
+
             setChartData(optionData);
+            setCurrentPrice(result.underlyingPrice);
+            setSymbol(symbol);
         } catch (err) {
             console.log(err)
         }
@@ -77,19 +82,27 @@ const OptionChain = () => {
                             type="text"
                             placeholder="Enter stock symbol" />
                     </Form.Group>
-                    <DropdownButton id="dropdown-item-button" title="Pick Expiration Date" className='mb-3'>
+                    {searchDate.length
+                        ? <DropdownButton id="dropdown-item-button" title={searchDate} className='mb-3'>
                             {searchDates.map((date) => {
                                 return (
                                     <Dropdown.Item key={date} onClick={(e) => dateFormHandle(e)}>{date} days till expiration</Dropdown.Item>
                                 )
                             })}
-                    </DropdownButton> 
+                            </DropdownButton>
+                        : <DropdownButton id="dropdown-item-button" title='Select an expiration date' className='mb-3'>
+                            {searchDates.map((date) => {
+                                return (
+                                    <Dropdown.Item key={date} onClick={(e) => dateFormHandle(e)}>{date} days till expiration</Dropdown.Item>
+                                )
+                            })}
+                         </DropdownButton> }
                     <Button variant='primary' type='submit' onClick={(e) => SubmitFormHandle(e)} className='mb-3'>Submit</Button>
                 </Form>
             </Container>
-            <Container fluid className='d-flex justify-content-center flex-wrap flex-row' >
+            <Container fluid className='d-flex justify-content-center flex-wrap flex-row w-75 p-0' >
                 {chartData.length
-                    ? <BarChart data={chartData} />
+                    ? <BarChart data={chartData} currentPrice={currentPrice} symbol={symbol}/>
                     : 'Enter a stock symbol'}
             </Container>
         </>
