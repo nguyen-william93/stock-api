@@ -22,7 +22,7 @@ const BarChart = (props) => {
 
     return (
         <>
-            <Container fluid>
+            <Container>
                 <h2 className ='d-flex justify-content-center'>Current Price of {symbol}: {price}</h2>
                 <h4 className = 'd-flex justify-content-center'>Open Interest Chart</h4>
                 <Bar
@@ -41,8 +41,7 @@ const BarChart = (props) => {
                             }
                         ]
                     }}
-                    width={'auto'}
-                    height={'250px'}
+                    height={'200px'}
                     options={{
                         maintainAspectRatio: true,
                         responsive: true,
@@ -53,7 +52,7 @@ const BarChart = (props) => {
                     }}
                 />
             </Container>
-            <Container fluid>
+            <Container>
                 <h4 className='d-flex justify-content-center'>Volume Chart</h4>
                 <Bar
                     data={{
@@ -71,8 +70,7 @@ const BarChart = (props) => {
                             }
                         ]
                     }}
-                    width={'auto'}
-                    height={'250px'}
+                    height={'200px'}
                     options={{
                         maintainAspectRatio: true,
                         responsive: true,

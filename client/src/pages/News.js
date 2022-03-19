@@ -21,10 +21,11 @@ const News = () => {
 
     return (
         <>
-            <Container className='text-light bg-dark w-75 flex-wrap flex-column'>
+        <Container fluid className='d-flex m-0 flex-row'>
+            <Container className='d-flex text-dark bg-light col-2 flex-wrap flex-column m-0 mt-2 rounded-right'>
                 <h1 className='d-flex justify-content-center'>Research a Stock</h1>
-                <Form className='d-flex justify-content-around flex-wrap'>
-                    <Form.Group className="w-auto" controlId="formBasicEmail">
+                <Form className='d-flex flex-wrap flex-colum'>
+                    <Form.Group className="w-auto mb-3" controlId="formBasicEmail">
                         <Form.Control
                             name='searchInput'
                             value={searchInput}
@@ -32,14 +33,15 @@ const News = () => {
                             type="text"
                             placeholder="Enter stock symbol" />
                     </Form.Group>
-                    <Button variant='primary' type='submit' className='mb-3' onClick={(e) => handleSubmitForm(e)}>Submit</Button>
+                    <Button variant='primary' type='submit' onClick={(e) => handleSubmitForm(e)}>Submit</Button>
                 </Form>
             </Container>
-            <Container fluid className='d-flex flex-column justify-content-center w-75 p-0'>
+            <Container fluid className='d-flex flex-column justify-content-center'>
                 {news.length
                     ? <NewsCard news={news} />
                     : "Search For A Stock"
                 }
+            </Container>
             </Container>
         </>
     )

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Form, Button, Dropdown, DropdownButton,  } from 'react-bootstrap';
+import { Container, Form, Button, Dropdown, DropdownButton, } from 'react-bootstrap';
 import { optionAPI } from '../utils/API';
 import BarChart from '../components/BarChart'
 
@@ -13,7 +13,7 @@ const OptionChain = () => {
     const [symbol, setSymbol] = useState('')
 
     useEffect(() => {
-        const SearchFormHandle = async() => {
+        const SearchFormHandle = async () => {
             const symbol = searchInput.toUpperCase();
             const url = {
                 method: 'GET',
@@ -72,39 +72,41 @@ const OptionChain = () => {
 
     return (
         <>
-            <Container fluid className='d-flex text-light bg-dark flex-wrap flex-column w-75'>
-                <h1 className='d-flex justify-content-center'>Search Option Chain</h1>
-                <Form className='d-flex justify-content-between flex-wrap'>
-                    <Form.Group className="w-auto" controlId="formBasicEmail">
-                        <Form.Control
-                            name='searchInput'
-                            value={searchInput}
-                            onChange={(e) => setSearchInput(e.target.value)}
-                            type="text"
-                            placeholder="Enter stock symbol" />
-                    </Form.Group>
-                    {searchDate.length
-                        ? <DropdownButton id="dropdown-item-button" title={searchDate} className='mb-3'>
-                            {searchDates.map((date) => {
-                                return (
-                                    <Dropdown.Item key={date} onClick={(e) => dateFormHandle(e)}>{date} days till expiration</Dropdown.Item>
-                                )
-                            })}
+            <Container fluid className='d-flex m-1 p-0 flex-row' id='optionChain'>
+                <Container fluid className='d-flex text-dark bg-light flex-column w-auto m-1 rounded-right'>
+                    <h2 className='d-flex justify-content-center'>Search Option Chain</h2>
+                    <Form className='d-flex justify-content-between flex-wrap'>
+                        <Form.Group className="w-100 mb-2" controlId="formBasicEmail">
+                            <Form.Control
+                                name='searchInput'
+                                value={searchInput}
+                                onChange={(e) => setSearchInput(e.target.value)}
+                                type="text"
+                                placeholder="Enter stock symbol" />
+                        </Form.Group>
+                        {searchDate.length
+                            ? <DropdownButton id="dropdown-item-button" title={searchDate} className='mb-3 w-100'>
+                                {searchDates.map((date) => {
+                                    return (
+                                        <Dropdown.Item key={date} onClick={(e) => dateFormHandle(e)}>{date} days till expiration</Dropdown.Item>
+                                    )
+                                })}
                             </DropdownButton>
-                        : <DropdownButton id="dropdown-item-button" title='Select an expiration date' className='mb-3'>
-                            {searchDates.map((date) => {
-                                return (
-                                    <Dropdown.Item key={date} onClick={(e) => dateFormHandle(e)}>{date} days till expiration</Dropdown.Item>
-                                )
-                            })}
-                         </DropdownButton> }
-                    <Button variant='primary' type='submit' onClick={(e) => SubmitFormHandle(e)} className='mb-3'>Submit</Button>
-                </Form>
-            </Container>
-            <Container fluid className='d-flex justify-content-center flex-wrap flex-row w-75 p-0' >
-                {chartData.length
-                    ? <BarChart data={chartData} currentPrice={currentPrice} symbol={symbol}/>
-                    : 'Enter a stock symbol'}
+                            : <DropdownButton id="dropdown-item-button" title='Select an expiration date' className='mb-3'>
+                                {searchDates.map((date) => {
+                                    return (
+                                        <Dropdown.Item key={date} onClick={(e) => dateFormHandle(e)}>{date} days till expiration</Dropdown.Item>
+                                    )
+                                })}
+                            </DropdownButton>}
+                        <Button variant='primary' type='submit' onClick={(e) => SubmitFormHandle(e)} className='mb-3 w-100'>Submit</Button>
+                    </Form>
+                </Container>
+                <Container fluid className='d-flex justify-content-center flex-wrap p-0' >
+                    {chartData.length
+                        ? <BarChart data={chartData} currentPrice={currentPrice} symbol={symbol} />
+                        : 'Enter a stock symbol'}
+                </Container>
             </Container>
         </>
     )
