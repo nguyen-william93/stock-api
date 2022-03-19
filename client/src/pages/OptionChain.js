@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Form, Button, Dropdown, DropdownButton, } from 'react-bootstrap';
 import { optionAPI } from '../utils/API';
 import BarChart from '../components/BarChart'
+import Watchlist from '../components/Watchlist'
 
 const apiKey = 'GIGELQVPAWW4KA2J9TMC1VP3IAEH4Q7H'
 const OptionChain = () => {
@@ -72,7 +73,7 @@ const OptionChain = () => {
 
     return (
         <>
-            <Container fluid className='d-flex m-1 p-0 flex-row' id='optionChain'>
+            <Container fluid className='d-flex m-1 p-0 flex-column flex-lg-row' id='optionChain'>
                 <Container fluid className='d-flex text-dark bg-light flex-column w-auto m-1 rounded-right'>
                     <h2 className='d-flex justify-content-center'>Search Option Chain</h2>
                     <Form className='d-flex justify-content-between flex-wrap'>
@@ -101,6 +102,7 @@ const OptionChain = () => {
                             </DropdownButton>}
                         <Button variant='primary' type='submit' onClick={(e) => SubmitFormHandle(e)} className='mb-3 w-100'>Submit</Button>
                     </Form>
+                    <Watchlist />
                 </Container>
                 <Container fluid className='d-flex justify-content-center flex-wrap p-0' >
                     {chartData.length
