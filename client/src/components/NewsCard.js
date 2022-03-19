@@ -11,7 +11,7 @@ const NewsCard = (props) => {
                 return (
                     <Card key={element.id} className="d-flex justify-content-center align-content-center mt-2 pl-2">
                         <Card.Link href = {element.article_url} target='_blank'> {element.title} </Card.Link>
-                        <Card.Body>
+                        <Card.Body >
                             <Card.Text>Publisher: {element.publisher.name}</Card.Text>
                             <Card.Text>Published On: {element.published_utc} </Card.Text>
                             <Card.Text>Author: {element.author} </Card.Text>
